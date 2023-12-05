@@ -6,3 +6,7 @@ interface Props {
 
 // 인터페이스의 사전적 정의는 "약속이다."
 // ts의 interface는 약속이다.
+
+function createComponent(element : string, props:Props, children?: string[]):string {
+  
+}
