@@ -7,7 +7,8 @@ interface Props {
 
 // 인터페이스의 사전적 정의는 "약속이다."
 // ts의 interface는 약속이다.
-
+//? 
+//? 여기서 children의 타입선언이 이상하다, 2개 이상이 가능한가? ("string[]"이부분)
 function createComponent(element : string, props:Props, children?: string[]):string {
   // ? 이건 뭘까? 배열안에 굳이 넣은 이유는 뭐지?
   let tagParts = [`<${element}`];
@@ -34,15 +35,17 @@ function createComponent(element : string, props:Props, children?: string[]):str
   // 태그를 닫는다.
   tagParts.push('>');
 
+  // ? 드디어 등장한 children 이렇게 작성함으로써 뒤에 어떤 것이 와도 추가될 것 같다. (확장성의 가능성)
+  // ? 스프레드 문법을 활요했는데, 
   if(children){
-    tagParts.push(`</${element}>`);
-
+    tagParts.push(...children);
+  }
+  tagParts.push(`</${element}>`);
     const result = tagParts.join('');
     return result;
-  }
-
-
-
-
 }
 
+
+const myComponent = createComponent('div', {id: "example", style:{color : "red"}}, ['안녕하세요']);
+const root = document.getElementById('root');
+root.innerHTML = myComponent;
