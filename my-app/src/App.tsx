@@ -1,3 +1,6 @@
+import React from 'react';
+import './hi';
+
 
 const App= () =>{
   return (
