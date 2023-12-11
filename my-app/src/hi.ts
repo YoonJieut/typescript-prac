@@ -35,5 +35,5 @@ console.groupCollapsed("객체 배열 예시");
   console.log('깊은 복사 배열 :' , deepCopiedUsers); // 깊은 복사 배열
 console.groupEnd();
 
-
+//! 여기서 모듈임을 명시하기 위해 ts에선 export {}를 작성해야 한다.
 export {};
