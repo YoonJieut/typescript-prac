@@ -1,4 +1,4 @@
-import { styleToString } from "./styleToString";
+import { styleToString } from "./styleToString.js";
 
 export const appendAttributes = (tagParts, props)=> {
 
@@ -10,6 +10,7 @@ export const appendAttributes = (tagParts, props)=> {
         attributeString = `${key} ="${value}"`;
       }
     tagParts.push(attributeString);
+    tagParts.push('>');
   }
   return tagParts;
 }
