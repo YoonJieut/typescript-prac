@@ -6,9 +6,27 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="root">
+  <div id="pokemon1" data-name-"Pikachu" data-type="Electric">피카츄</div>
+  <div id="pokemon1" data-name-"Charmander" data-type="Fire">파이리</div>
+  <div id="pokemon1" data-name-"Squirtle" data-type="Water">꼬부기</div>
+
+  <script>
+    function saveDataTag(el){
+      const name = el.dataset.name;
+      const type = el.dataset.type;
+      console.log(name);
+
+      return function(){
+        return `${name}의 속성은 ${type}입니다.`;
+      }
+    }
+
+    const divArray = Array.from(document.querySelectorAll('div'));
     
-  </div>
-  <script src="./typescript-8.js"></script>
+    divArray.forEach(el => {
+      const getPokemonInfo = saveDataTag(el);
+      div.textContent = getPokemonInfo();
+    })
+  </script>
 </body>
 </html>
