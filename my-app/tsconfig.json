@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "typescript-8.js"  ]
 }
