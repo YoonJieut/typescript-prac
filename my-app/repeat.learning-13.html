@@ -20,25 +20,19 @@
      * new XMLHttpRequest() 라는 인스턴트 안에는 각종 문서가 통신을 위해 필요한 기능과 정보들이 담겨 있다.
     */
     console.log("잘 작동 중입니다.")
-    const getPokemonAJAX = ()=>{
-      const xhr = new XMLHttpRequest(); // 이것이 객체, 인스턴스로 보여야 한다.
-      // ? 이게 왜 .xhr로 적혀있는 걸까?
-      console.dir("데이터 받기전 조회 : ",xhr ); // "데이터 받기전 조회 :" 이렇게 나오고 끝
-      xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/', true); // 무반응
-      // xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/', false);
-      // 여기서 true는 비동기 요청을 의미한다.
-      // 비동기 요청을 하면 요청을 보낸 후, 응답이 올 때까지 기다리지 않고 다음 코드를 실행한다.
-      // 따라서 응답이 올 때까지 기다리지 않고 다음 코드를 실행하고 싶다면, false로 설정해야 한다.
-      // 하지만, 비동기 요청을 하지 않으면 브라우저가 멈추기 때문에, 권장하지 않는다.
-      // open 메서드의 세 번째 인수는 생략이 가능하다. 생략하면 기본값은 false이다.
-      xhr.addEventListener('load',()=>{
+    const getPokemonAJAX = () => {
+      const xhr = new XMLHttpRequest();
+      console.dir("데이터 받기전 조회 : ", xhr);
+      xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/', true);
+      xhr.addEventListener('load', () => {
         console.log('load 이벤트 발생');
-        if(xhr.status === 200){
+        if (xhr.status === 200) {
           console.log("데이터 받은 후 조회 : ");
-          console.dir(xhr); 
-          xhr.send();
-        }
+          console.dir(xhr);
+          console.log(xhr.responseText); // 응답 데이터를 가져옵니다.
+          }
       });
+      xhr.send();
     }
     getPokemonAJAX();
   </script>
