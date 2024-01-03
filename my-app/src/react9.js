@@ -37,3 +37,19 @@ function vanilaComponent(tagName, attributes, style, event, children) {
   `;
   return htmlString;
 }
+
+// --------------- map으로 변형하기 ---------------
+
+function vanilaComponent(tagName, attributes, style, event, children) {
+  const attributesString = Object.entries(attributes).map(([key, value]) => `${key}="${value}"`).join(' ');
+  const styleString = Object.entries(style).map(([key, value]) => `${key}:${value}`).join(';');
+  const eventString = Object.entries(event).map(([key, value]) => `${key}="${value}"`).join(' ');
+  const childrenString = children.map(child => typeof child === "string" || typeof child === "number" ? child : child.outerHTML).join('');
+
+  const htmlString = `
+    <${tagName} ${attributesString} style="${styleString}" ${eventString}>
+      ${childrenString}
+    </${tagName}>
+  `;
+  return htmlString;
+}
