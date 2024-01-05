@@ -13,3 +13,16 @@ function createStringAppender(){
   }
 }
 
+const appendString = createStringAppender();
+
+function splitString(stringParams){
+  return stringParams.split(" ");
+}
+
+// appendString 사용 예시
+appendString(splitString(stringExample), (body) => { 
+  console.log("body : " ,body);
+  console.log("body.length : ",body.length);
+ });
+// * createStingAppender 함수는 클로저를 반환합니다. 호출 시, 인자를 작성하면, 리턴 함수에 인자를 그대로 전달해주는 것이다. 이것은 고차함수라고 볼 수 있다.
+
