@@ -46,6 +46,14 @@
         } else {
           pack.isOpen = true;
         }
+
+        /**
+         * 위 if문에 따라 아래 if문이 실행됩니다.
+         * 직접적으로 제어하는 것을 "양방향 데이터 바인딩"방식이며 Vue.js가 채택하는 방식이지만,
+         * React는 어떤 상태, 여기에서는 isOpen이 변경되었는지를 감지하고,
+         * 변경된 상태를 랜더링하는 방식으로 '단방향 데이터 바인딩'을 채택했습니다.
+        */
+
         if(pack.isOpen){
           pack.style.backgroundColor = "lightgreen";
         } else {
