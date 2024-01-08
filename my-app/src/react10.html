@@ -6,10 +6,59 @@
   <title>Document</title>
 </head>
 <body>
+  <button id="addPackButton">asdasdasd</button>
   <div id="root"></div>
-  <button id="addPackButton"></button>
   <script>
-    
+    // 전역 상태
+    let globalState = {
+      packs: 10,
+    };
+
+    function createCardPack(index){
+      const pack = document.createElement('div');
+      pack.id = `pack${index}`;
+      pack.innerText = `Pack ${index}`;
+      pack.style.cursor = "pointer";
+      pack.isOpen = false;
+
+      pack.addEventListener('click', () => {
+        if(pack.isOpen){
+          pack.isOpen = false;
+        } else {
+          pack.isOpen = true;
+        }
+        if(pack.isOpen){
+          pack.style.backgroundColor = "lightgreen";
+        } else {
+          pack.style.backgroundColor = "white";
+        }
+      });
+      return pack;
+    };
+
+    // 전역 상태를 기반으로 카드 팩들을 랜더링하는 함수
+    function renderPacks(){
+      const root = document.getElementById('root');
+
+      root.innerHTML = ''; // 기존 팩들을 초기화
+
+      for(let i = 0; i < globalState.packs; i++){
+        root.appendChild(createCardPack(i));
+      }
+    }
+
+    // 팩을 추가하는 함수
+    function addPack(){
+      globalState.packs++;
+      renderPacks();
+    }      
+
+    // 문서 getting
+    const addPackButton = document.getElementById('addPackButton'); 
+    addPackButton.addEventListener('click', addPack);
+
+    // 초기 렌더링
+    renderPacks();
   </script>
 </body>
 </html>
