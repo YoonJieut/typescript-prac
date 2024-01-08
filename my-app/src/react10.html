@@ -9,17 +9,36 @@
   <button id="addPackButton">asdasdasd</button>
   <div id="root"></div>
   <script>
-    // 전역 상태
+    // 전역 상태 - 포켓몬 카드팩 수량
     let globalState = {
       packs: 10,
     };
 
+
+    /**
+     * 위 globalState 객체는 어디든 접근할 수 있는 전역 데이터로 가정한다.
+     * 라이브러리를 사용하지 않는다면, json 파일을 불러와서 전역 상태를 초기화(시작)할 수 있고,
+     * 일반적으로 라이브러리를 사용해, 전역 상태를 관리합니다.
+     * 
+     * 위 개념은 react에서 useContext를 사용할 때, 전역 상태를 관리하는 방법과 동일하다.
+     * 라이브러리로는, Redux, Recoil이 매우 대중적으로 사용됩니다.
+     */ 
+
+    // 카드 팩을 생성하는 함수
     function createCardPack(index){
       const pack = document.createElement('div');
       pack.id = `pack${index}`;
-      pack.innerText = `Pack ${index}`;
+      pack.innerText = `Pack ${index +1}`;
+      // 간단한 스타일링
       pack.style.cursor = "pointer";
+      // 지역 상태 데이터
       pack.isOpen = false;
+      /**
+       * pack.isOpen은 pack 이라는 DOM 객체에 동적으로 키(KEY)하나를 추가한 것으로,
+       * React에서는 useState를 사용해 지역 상태를 관리합니다.
+       * if(pack.isOpen) { ... } else { ... } 부분이 useState를 모방한 것으로 ' 단방향 데이터 바인딩'을 구현한 것입니다.
+      */
+
 
       pack.addEventListener('click', () => {
         if(pack.isOpen){
