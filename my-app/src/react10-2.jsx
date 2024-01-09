@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function ReactTenDashOne() {
+export default function ReactTenDashOne() {
 
   const stateWork = [];
   stateWork.legth = 10;
@@ -26,8 +26,20 @@ export function ReactTenDashOne() {
     // 즉, 배열길이가 늘어남에 따라, packs 배열의 원소가 늘어난다.
   };
 
-    return (
+  return (
+    <div>
+      <button onClick={addPack}>Open!!</button>
       <div>
+        {packs.map((isOpen, index)=>(
+          <div
+            key={index}
+            style={{ cursor: "pointer", backgroundColor: isOpen ? "yellow" : "white" }}
+            onClick={() => togglePack(index)}
+          >
+            Pack {index + 1}
+          </div>
+        ))}
       </div>
-    )
+    </div>
+  );
 }
