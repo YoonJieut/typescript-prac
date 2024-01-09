@@ -30,6 +30,7 @@ export default function ReactTenDashOne() {
     <div>
       <button onClick={addPack}>Open!!</button>
       <div>
+        {/* ? 왜 소괄호일까? => 이유는 단일문이기 때문에 단순화하기 위해서라고 한다. */}
         {packs.map((isOpen, index)=>(
           <div
             key={index}
