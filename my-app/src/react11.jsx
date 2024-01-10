@@ -67,19 +67,28 @@ const makeReact = function(){
                   // * var add = function (x, y) { return x + y; };
                   // * var add = (x, y) => x + y;
                   // * var add = new Function('x', 'y', 'return x + y;');
+                    // JavaScript에서 소괄호는 표현식을 그룹화하는 역할을 합니다. 이는 소괄호 내부의 코드를 하나의 단위로 취급하고 그 결과를 반환하는 것을 의미합니다.
 
+    // 상태 인덱스를 증가시킵니다. 다음 상태를 위해서.
     index++;
-    return [currentState, setState];
+    // 현재 상태와 그 상태를 업데이트하는 함수를 반환합니다.
+    // 이는 react의 useState() 훅과 유사한 패턴입니다.
+    return [currentState, setState]; // [true, ƒ] [상태, 상태를 업데이트하는 함수]
   };
-  return useState;
+  return useState; // ! useState() 함수는 결국 배열을 반환한다.
 }
 
 
 // MakeComponent() 함수는 간략화된 React 컴포넌트입니다.
 function MakeComponent(){
-  const useState = makeReact();
+  // useState() 훅을 사용하여 상태를 관리합니다. 
+  // 상태와 상태 설정 함수 가져오기
+  // 초기 상태는 true입니다.
+  const useState = makeReact(); // * useState()를 구현하기 위한 안티패턴
   const [state, setState] = useState(true);
 
+  // 결과적으로 아래와 같은 간단한 click 이벤트 핸들일 뿐이지만,
+  // 내부적으로는 '지정된 상태'를 업데이트 하는 로직을 풀고 있습니다.
   return (
     <>
       <div>{state.toString()}</div>
