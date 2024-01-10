@@ -20,18 +20,24 @@
      * new XMLHttpRequest() 라는 인스턴트 안에는 각종 문서가 통신을 위해 필요한 기능과 정보들이 담겨 있다.
     */
     console.log("잘 작동 중입니다.")
-    const getPokemonAJAX = () => {
-      const xhr = new XMLHttpRequest();
-      console.dir("데이터 받기전 조회 : ", xhr);
-      xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/', true);
-      xhr.addEventListener('load', () => {
-        console.log('load 이벤트 발생');
-        if (xhr.status === 200) {
-          console.log("데이터 받은 후 조회 : ");
-          console.dir(xhr);
-          console.log(xhr.responseText); // 응답 데이터를 가져옵니다.
-          }
-      });
+    const getPokemonAJAX = ()=>{
+      const xhr = new XMLHttpRequest(); // 이것이 객체, 인스턴스로 보여야 한다.
+
+      // 비동기 요청 설정
+      xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/', true); 
+
+      // 요청이 완료 됐을 때 실행할 콜백함수 정의
+      xhr.onload = ()=>{
+        if(xhr.status === 200){
+          console.dir(xhr); 
+          // 응답을 콘솔에 출력
+          console.log(xhr.responseText);
+          const pokemon = JSON.parse(xhr.responseText);
+          console.log(pokemon.results);
+        } else {
+          console.error(" 데이터 못 받아옴 " + xhr.statusText)
+        }
+      }
       xhr.send();
     }
     getPokemonAJAX();
