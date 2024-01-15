@@ -86,3 +86,17 @@ const Subscription:React.FC = () => {
 };
 
 export default Subscription;
+import express from 'express';
+
+const router = express.Router();
+
+router.get('/subscribe', (req, res) => {
+  // 서버에서 구독 요청을 처리하는 로직을 작성합니다.
+  // 구독 상태를 확인하고 필요한 작업을 수행합니다.
+  // 예를 들어, 데이터베이스에 구독 정보를 저장하거나 다른 서비스에 알림을 보낼 수 있습니다.
+
+  // 구독이 성공적으로 처리되었다고 가정하고 응답을 보냅니다.
+  res.json({ isSubscribed: true });
+});
+
+export default router;
