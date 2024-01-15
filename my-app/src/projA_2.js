@@ -6,12 +6,21 @@
 // 눈에 보이지 않는 상태값을 어거지로 꺼낸 예제이므로 안티 패턴입니다.
 let globalCountNumber = 0;
 
+
+// 아래는 클로저 패턴을 사용, 전역변수를 사용하지 않고도
+// 전역 변수를 다루는 코드입니다.
 function createCounter() {
-  let localCountNumber = 0;
+  let localCountNumber = 0; // 클로저 내부의 지역변수
+
+  // return이 함수이기 때문에 클로저가 됩니다.
+  // createCounter()를 호출하면, increase() 함수를 반환합니다.
+  // 결과적으로 지역 변수 localCountNumber는 값이 남아 증가합니다.
   return function () {
     localCountNumber++;
     console.log('localCountNumber :', localCountNumber);
 
+
+    // 아래 조건식은 10을 나우어 떨어지는 경우에만 실행됩니다.
     if(localCountNumber % 10 ===0 ){
       globalCountNumber++;
       console.log('globalCountNumber :', globalCountNumber);
@@ -21,7 +30,10 @@ function createCounter() {
 
 const count = createCounter();
 
+// count() 함수를 100번 호출합니다.
 for (let i = 0; i < 100; i++) {
   count();
+  // 호출할 때마다 localCountNumber가 1씩 증가합니다.
+  // 덩달아 10의 배수에서는 globalCountNumber도 1씩 증가합니다.
 }
 console.log(globalCountNumber); // 10
